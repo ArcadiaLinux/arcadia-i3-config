@@ -136,17 +136,17 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar
   bar {
-          status_command i3status
-          colors{
-                background #282828
-                statusline #ebdbb2
-                separator #fbf1c7
+        position top
+        colors{
+                background #282A36
+                statusline #F8F8F2
+                separator  #44475A
 
-                focused_workspace #458588 #076678 #ebdbb2
-                active_workspace #458588 #076678 #ebdbb2
-
-                inactive_workspace #333333 #222222 #888888
-                urgent_workspace   #fb4934 #cc241d #fbf1c7
+                focused_workspace  #44475A #44475A #F8F8F2
+                active_workspace   #282A36 #44475A #F8F8F2
+                inactive_workspace #282A36 #282A36 #BFBFBF
+                urgent_workspace   #FF5555 #FF5555 #F8F8F2
+                binding_mode       #FF5555 #FF5555 #F8F8F2
           }
  }
 
@@ -173,31 +173,25 @@ smart_gaps on
 smart_borders on
 
 # Compton
-# exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton.conf"
+exec_always --no-startup-id "killall -q picom; picom --config ~/.config/picom/picom.conf"
+
+# Volume icon
+exec_always --no-startup-id "killall -q volumeicon; volumeicon"
 
 # Wallpaper
-exec_always --no-startup-id "feh --bg-fill --randomize ~/Pictures/Wallpapers/*"
+exec_always --no-startup-id "feh --bg-fill --randomize /usr/share/backgrounds/arcadia/*"
 
 # Polkit auth agent'
 # exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 
 
-# Set primary gruvbox colorscheme colors
-set $bg #282828
-set $fg #d5c4a1
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
-# class                 border|backgr|text|indicator|child_border
-client.focused          $blue $blue $darkgray $purple $fg
-client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
-client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
-client.urgent $red $red $white $red $red
+client.background       #F8F8F2
 
 # Brightness controls
 bindsym XF86MonBrightnessDown exec "brightnessctl s 10%-"
